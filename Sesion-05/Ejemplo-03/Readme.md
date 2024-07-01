@@ -32,6 +32,7 @@ for (calificacion in calificaciones) {
     }
 }
 println(aprobados)  // Output: [10, 8, 9, 7, 6, 9, 10, 6, 6]
+```
 La versión funcional usando filter es mucho más concisa y expresiva:
 
 ```kotlin
