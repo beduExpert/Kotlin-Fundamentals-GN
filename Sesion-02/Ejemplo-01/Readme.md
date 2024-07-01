@@ -28,7 +28,6 @@ Unit es el equivalente a void en otros lenguajes.
 Ejemplos:
 
 ```kotlin
-Copiar código
 // Función que retorna un valor
 fun suma(a: Int, b: Int): Int {
     return a + b
