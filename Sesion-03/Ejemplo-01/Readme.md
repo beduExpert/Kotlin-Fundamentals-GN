@@ -1,26 +1,34 @@
 ## Clases y objetos
 
-### OBJETIVO
+## Objetivo
+- Crear el código para generar una clase.
+- Instanciar clases.
 
-- Crear el código para generar una clase
-- Instanciar clases
+## Requisitos
+- Leer sobre Programación Orientada a Objetos (POO).
 
-#### REQUISITOS
+## Desarrollo
+La Programación Orientada a Objetos (POO) interpreta problemas y los abstrae en modelos de objetos con atributos y métodos.
 
-1. Leer sobre Programación Orientada a Objetos
-
-#### DESARROLLO
-
-La Programación orientada objetos interpreta problemas y los abstrae a modelos de objetos con atributos y métodos.
-
-
-Una clase es un modelo abstracto de un objeto, y su representación más básica en kotlin es la siguiente: 
+Una clase es un modelo abstracto de un objeto, y su representación más básica en Kotlin es la siguiente:
 
 ```kotlin
-class Phone{
+class NombreDeLaClase {
+    // Atributos (propiedades) de la clase
+    var atributo1: TipoDeDato1
+    var atributo2: TipoDeDato2
 
+    // Constructor de la clase
+    constructor(atributo1: TipoDeDato1, atributo2: TipoDeDato2) {
+        this.atributo1 = atributo1
+        this.atributo2 = atributo2
+    }
+
+    // Métodos de la clase
+    fun metodo1() {
+        // Código del método
+    }
 }
-```
 
 Haciendo un repaso, en kotlin todas las variables son tomadas como objetos. Por tanto, incluso los tipos de datos primitivos son envueltos en un objeto para que puedan tener métodos.
 
