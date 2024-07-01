@@ -67,6 +67,7 @@ Decrementa su valor en 1 y muestra el resultado
 
 <details>
   <summary>Ver solución</summary>
+  
   ```kotlin
     var contador = 5
     println("Incremento: ${++contador}")
@@ -85,6 +86,7 @@ Muestra el resultado después de cada operación.
 
 <details>
   <summary>Ver solución</summary>
+  
   ```kotlin
     var numero = 10
     numero += 5
@@ -108,6 +110,7 @@ Muestra el resultado de cada comparación.
 
 <details>
   <summary>Ver solución</summary>
+  
   ```kotlin 
     val a = 15
     val b = 20
@@ -127,6 +130,7 @@ Muestra los resultados.
 
 <details>
   <summary>Ver solución</summary>
+  
   ```kotlin
     val str1 = "Hola"
     val str2 = "Mundo"
@@ -142,6 +146,7 @@ Calcula el precio final después del descuento.
 Muestra el precio original, el descuento y el precio final.
 <details>
   <summary>Ver solución</summary>
+  
   ```kotlin
     val precioOriginal = 100.0
     val porcentajeDescuento = 20
@@ -150,7 +155,8 @@ Muestra el precio original, el descuento y el precio final.
     
     println("Precio original: $precioOriginal")
     println("Descuento: $descuento")
-    println("Precio final: $precioFinal")```
+    println("Precio final: $precioFinal")
+```
 </details>
 
 ## Ejercicio 8: Conversión de Tipos
@@ -159,13 +165,15 @@ Conviértela a Int y luego a Double.
 Realiza una operación aritmética con cada tipo y muestra los resultados.
 <details>
   <summary>Ver solución</summary>
+  
   ```kotlin
     val numeroString = "42"
     val numeroInt = numeroString.toInt()
     val numeroDouble = numeroInt.toDouble()
     
     println("Int + 10: ${numeroInt + 10}")
-    println("Double + 10.5: ${numeroDouble + 10.5}")```
+    println("Double + 10.5: ${numeroDouble + 10.5}")
+```
 </details>
 
 ## Ejercicio 9: Operaciones Booleanas
@@ -173,6 +181,7 @@ Crea tres variables booleanas y utiliza operadores lógicos (AND, OR, NOT) para 
 Muestra el resultado de al menos tres combinaciones diferentes.
 <details>
   <summary>Ver solución</summary>
+  
   ```kotlin
     val p = true
     val q = false
@@ -181,7 +190,8 @@ Muestra el resultado de al menos tres combinaciones diferentes.
     println("p AND q: ${p && q}")
     println("p OR q: ${p || q}")
     println("NOT p: ${!p}")
-    println("(p OR q) AND r: ${(p || q) && r}")```
+    println("(p OR q) AND r: ${(p || q) && r}")
+```
 </details>
 
 ## Ejercicio 10: Cálculo de IMC
@@ -190,10 +200,12 @@ Calcula el Índice de Masa Corporal (IMC) usando la fórmula: IMC = peso / (altu
 Muestra el resultado del IMC.
 <details>
   <summary>Ver solución</summary>
+  
   ```kotlin
     val peso = 70.0 // kg
     val altura = 1.75 // metros
     val imc = peso / (altura * altura)
     
-    println("IMC: ${"%.2f".format(imc)}")```
+    println("IMC: ${"%.2f".format(imc)}")
+```
 </details>
