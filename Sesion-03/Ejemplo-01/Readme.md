@@ -29,7 +29,7 @@ class NombreDeLaClase {
         // Código del método
     }
 }
-
+```
 Haciendo un repaso, en kotlin todas las variables son tomadas como objetos. Por tanto, incluso los tipos de datos primitivos son envueltos en un objeto para que puedan tener métodos.
 
 ```kotlin
