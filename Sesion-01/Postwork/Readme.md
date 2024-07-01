@@ -47,7 +47,7 @@ Imprime el resultado de cada operación.
 <details>
   <summary>Ver solución</summary>
   ```kotlin
-    Copyval num1 = 20
+    val num1 = 20
     val num2 = 6
   
     println("Suma: ${num1 + num2}")
