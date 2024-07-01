@@ -85,10 +85,12 @@ En este ejemplo, obj2 as? String intenta convertir obj2 a String de forma segura
 ## 4. Comparación de Casting en Kotlin
 A continuación, se muestra una tabla comparativa entre los diferentes tipos de casting en Kotlin:
 
-Tipo de Cast	Descripción	Ejemplo
-Smart Cast	Conversion automática basada en una verificación de tipo en tiempo de ejecución.	if (obj is String) { println(obj.length) }
-Unsafe Cast	Conversión forzada que puede lanzar una excepción si los tipos no coinciden.	val str: String = obj as String
-Safe Cast	Conversión segura que devuelve null si el tipo no es compatible.	val str: String? = obj as? String
+| Tipo de Cast   | Descripción                                                                | Ejemplo                                         |
+|----------------|----------------------------------------------------------------------------|-------------------------------------------------|
+| **Smart Cast** | Conversión automática basada en una verificación de tipo en tiempo de ejecución. | `if (obj is String) { println(obj.length) }`   |
+| **Unsafe Cast**| Conversión forzada que puede lanzar una excepción si los tipos no coinciden. | `val str: String = obj as String`              |
+| **Safe Cast**  | Conversión segura que devuelve `null` si el tipo no es compatible.         | `val str: String? = obj as? String`            |
+
 ## 5. Resumen
 En Kotlin, el manejo de tipos y el casting son fundamentales para escribir código seguro y eficiente. Usar Smart Casts facilita el trabajo con tipos, mientras que los Safe Casts previenen errores potenciales al trabajar con tipos nulos. Los Unsafe Casts deben ser usados con precaución, ya que pueden causar errores en tiempo de ejecución.
 
