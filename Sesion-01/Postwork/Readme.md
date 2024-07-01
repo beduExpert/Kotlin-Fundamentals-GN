@@ -68,10 +68,10 @@ Decrementa su valor en 1 y muestra el resultado
 <details>
   <summary>Ver solución</summary>
   ```kotlin
-    Copyvar contador = 5
+    var contador = 5
     println("Incremento: ${++contador}")
     println("Decremento: ${--contador}")
-  ```
+```
 </details>
 
 ## Ejercicio 4: Operadores de Asignación Compuesta
@@ -86,7 +86,7 @@ Muestra el resultado después de cada operación.
 <details>
   <summary>Ver solución</summary>
   ```kotlin
-    Copyvar numero = 10
+    var numero = 10
     numero += 5
     println("Después de sumar 5: $numero")
     numero *= 2
@@ -95,7 +95,7 @@ Muestra el resultado después de cada operación.
     println("Después de restar 3: $numero")
     numero /= 4
     println("Después de dividir entre 4: $numero")
-  ```
+```
 </details>
 
 ## Ejercicio 5: Comparaciones
@@ -109,12 +109,12 @@ Muestra el resultado de cada comparación.
 <details>
   <summary>Ver solución</summary>
   ```kotlin 
-    Copyval a = 15
+    val a = 15
     val b = 20
     println("a es igual a b: ${a == b}")
     println("a es mayor que b: ${a > b}")
     println("b es menor o igual que a: ${b <= a}")
-  ```
+```
 </details>
     
 ## Ejercicio 6: Operaciones con Strings
@@ -128,7 +128,7 @@ Muestra los resultados.
 <details>
   <summary>Ver solución</summary>
   ```kotlin
-    Copyval str1 = "Hola"
+    val str1 = "Hola"
     val str2 = "Mundo"
     println("Concatenación: ${str1 + " " + str2}")
     println("Son iguales: ${str1 == str2}")
@@ -143,15 +143,14 @@ Muestra el precio original, el descuento y el precio final.
 <details>
   <summary>Ver solución</summary>
   ```kotlin
-    Copyval precioOriginal = 100.0
+    val precioOriginal = 100.0
     val porcentajeDescuento = 20
     val descuento = precioOriginal * porcentajeDescuento / 100
     val precioFinal = precioOriginal - descuento
     
     println("Precio original: $precioOriginal")
     println("Descuento: $descuento")
-    println("Precio final: $precioFinal")
-    ```
+    println("Precio final: $precioFinal")```
 </details>
 
 ## Ejercicio 8: Conversión de Tipos
@@ -161,13 +160,12 @@ Realiza una operación aritmética con cada tipo y muestra los resultados.
 <details>
   <summary>Ver solución</summary>
   ```kotlin
-    Copyval numeroString = "42"
+    val numeroString = "42"
     val numeroInt = numeroString.toInt()
     val numeroDouble = numeroInt.toDouble()
     
     println("Int + 10: ${numeroInt + 10}")
-    println("Double + 10.5: ${numeroDouble + 10.5}")
-    ```
+    println("Double + 10.5: ${numeroDouble + 10.5}")```
 </details>
 
 ## Ejercicio 9: Operaciones Booleanas
@@ -176,15 +174,14 @@ Muestra el resultado de al menos tres combinaciones diferentes.
 <details>
   <summary>Ver solución</summary>
   ```kotlin
-    Copyval p = true
+    val p = true
     val q = false
     val r = true
     
     println("p AND q: ${p && q}")
     println("p OR q: ${p || q}")
     println("NOT p: ${!p}")
-    println("(p OR q) AND r: ${(p || q) && r}")
-    ```
+    println("(p OR q) AND r: ${(p || q) && r}")```
 </details>
 
 ## Ejercicio 10: Cálculo de IMC
@@ -194,10 +191,9 @@ Muestra el resultado del IMC.
 <details>
   <summary>Ver solución</summary>
   ```kotlin
-    Copyval peso = 70.0 // kg
+    val peso = 70.0 // kg
     val altura = 1.75 // metros
     val imc = peso / (altura * altura)
     
-    println("IMC: ${"%.2f".format(imc)}")
-    ```
+    println("IMC: ${"%.2f".format(imc)}")```
 </details>
