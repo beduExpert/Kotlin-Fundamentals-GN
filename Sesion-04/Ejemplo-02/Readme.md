@@ -12,23 +12,42 @@
 
 #### DESARROLLO
 
-##### Clases abstractas
+## Abstracción y Clases Abstractas
 
-Una abstracción es la separación, a nivel conceptual, de las propiedades de algo y definirlos a través del pensamiento, aislándolos del mundo sensible. Teniendo en cuenta esto, una clase abstracta permite crear una clase que su objetivo sea definitorio, por lo tanto, las clases abstractas no pueden ser instanciadas.
+### Abstracción en Programación
 
-Dichas clases permiten crear métodos abstractos (que no tienen cuerpo) y métodos concretos (que tienen cuerpo). Cuando existe una jerarquía de clases que comparten un método, pero la forma de implementarla es totalmente distinta en todas las subclases, es innecesario que la clase padre defina la implementación.Las clases abstractas tienen las siguientes características:
+La **abstracción** es el proceso conceptual de separar las propiedades y comportamientos esenciales de un objeto del mundo sensible, permitiendo definir esos conceptos a nivel conceptual. En programación orientada a objetos, la abstracción nos ayuda a modelar el mundo real de manera que sea más fácil de manejar y entender.
 
-- El único propósito de una clase abstracta es heredar a otras clases, por ende no puede ser instanciada.
-- Toda clase que tenga un miembro abstracto, debe declararse abstracta.
-- Un método abstracto no tiene cuerpo.
-- Puede tener miembros declarados y otorgarle el nivel de visibilidad que sea.
+### Clases Abstractas
 
+Una **clase abstracta** es una clase cuyo propósito es ser una base para otras clases. No está diseñada para ser instanciada directamente, sino para ser heredada por otras clases que proporcionarán una implementación específica. Las clases abstractas permiten definir una interfaz común para un grupo de clases relacionadas, facilitando la organización y reutilización del código.
 
- Como ejemplo, vamos a simular una aplicación para la reservación de viajes. Podemos reservar viajes a una ciudad específica por cierta cantidad de días y cotizar tu viaje. Por el momento sólo hay viajes nacionales, pero pronto existirá la posibilidad de hacer viajes internacionales, por tanto, deducimos que estos tipos de viajes tendrán cosas en común y por tanto tendrán una superclase en común; a esa clase la llamaremos ***Travel***.
- 
- ```kotlin
- class Travel {
+#### Características de las Clases Abstractas
 
+- **No pueden ser instanciadas:** El único propósito de una clase abstracta es servir de base para otras clases. No se puede crear una instancia de una clase abstracta directamente.
+- **Contienen métodos abstractos y concretos:** 
+  - **Métodos abstractos:** Declarados sin cuerpo, estos métodos deben ser implementados por las subclases.
+  - **Métodos concretos:** Tienen una implementación completa y pueden ser heredados tal como están o ser sobrescritos (override) en las subclases.
+- **Pueden tener miembros y propiedades concretas:** Aparte de métodos abstractos, una clase abstracta puede contener propiedades y métodos con implementación.
+
+#### Ejemplo de Clase Abstracta
+
+Vamos a simular una aplicación para la reservación de viajes. Actualmente, solo se pueden reservar viajes nacionales, pero en el futuro se añadirán viajes internacionales. Ambas categorías de viajes compartirán ciertos aspectos, por lo que definiremos una clase abstracta llamada `Travel` para representar estos aspectos comunes:
+
+```kotlin
+abstract class Travel(
+    val destination: String,
+    val numberOfDays: Int
+) {
+    // Método abstracto que debe ser implementado por las subclases
+    abstract fun calculateCost(): Double
+
+    // Método concreto que puede ser heredado tal cual o sobrescrito
+    fun printReservationDetails() {
+        println("Destino: $destination")
+        println("Número de días: $numberOfDays")
+        println("Costo total: ${calculateCost()}")
+    }
 }
 ```
 
