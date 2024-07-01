@@ -12,11 +12,21 @@
 
 #### DESARROLLO
 
-##### Data class
+## Data Class
 
-Un Data class es una clase que tiene como único objetivo es cargar información en una clase a través de su constructor, sin poder definir métodos para modificar o eliminar sus datos.
+### Definición
 
-Su definición y declaración sucede a través del constructor de la clase, pero con el modificador **data**.
+Una **data class** en Kotlin es una clase diseñada principalmente para almacenar datos. Su objetivo es representar un conjunto de datos a través de su constructor sin necesidad de definir métodos adicionales para modificar o eliminar sus datos.
+
+### Características de una Data Class
+
+- **Objetivo Principal:** Cargar y almacenar información. Las `data class` se centran en representar datos y no en modificar o gestionar su estado.
+- **Definición Simplificada:** Se definen utilizando el modificador `data` antes de la palabra clave `class`. 
+
+### Declaración de una Data Class
+
+La sintaxis básica para definir una `data class` es la siguiente:
+
 ```kotlin
 data class Movie(
     val name: String,
@@ -24,24 +34,71 @@ data class Movie(
     val duration: Double
 )
 ```
-Anteriormente declaramos una clase de datos de una película. Vamos a crear la primera clase de datos, que guardará datos de la película *Scary movie*.
+En este ejemplo, Movie es una data class que tiene tres propiedades: name, gender, y duration. Estas propiedades se definen en el constructor primario de la clase.
+
+Creación de Instancias y Uso
+Para crear una instancia de la data class, simplemente se llama al constructor con los parámetros correspondientes:
 
 ```kotlin
-    //declaración
-    val scaryMovie = Movie("Scary movie", "Comedia", 88.27)
-    //impresión
-    println(scaryMovie)
+// Creación de una instancia de la data class
+val scaryMovie = Movie("Scary movie", "Comedia", 88.27)
+
 ```
 
-la impresión de una data class se ve así:
-
-> Movie(name=Scary movie, gender=Comedia, duration=88.27)
-
-Si queremos obtener la propiedad de un objeto en pesona:
+Impresión de Instancias
+La impresión de una instancia de una data class utiliza una representación legible de sus propiedades:
 
 ```kotlin
-//imprimir una propiedad en específico
-    println(scaryMovie.name)
+// Imprimir la instancia
+println(scaryMovie)
+```
+La salida será:
+
+```scss
+Movie(name=Scary movie, gender=Comedia, duration=88.27)
+```
+Acceso a Propiedades
+Puedes acceder a las propiedades de una instancia de data class directamente usando la notación de punto:
+
+```kotlin
+
+// Imprimir una propiedad en específico
+println(scaryMovie.name)  // Output: Scary movie
+```
+
+Métodos Generados Automáticamente
+Las data class generan automáticamente algunos métodos útiles, como:
+
+toString(): Para una representación en cadena de la instancia.
+equals(): Para comparar dos instancias basadas en sus propiedades.
+hashCode(): Para generar un código hash basado en las propiedades.
+copy(): Para crear una nueva instancia con propiedades modificadas.
+
+Ejemplo Completo
+Aquí tienes un ejemplo completo de una data class con instanciación y uso:
+
+```kotlin
+
+data class Movie(
+    val name: String,
+    val gender: String,
+    val duration: Double
+)
+
+fun main() {
+    // Creación de una instancia de la data class
+    val scaryMovie = Movie("Scary movie", "Comedia", 88.27)
+    
+    // Impresión de la instancia
+    println(scaryMovie)  // Output: Movie(name=Scary movie, gender=Comedia, duration=88.27)
+    
+    // Imprimir una propiedad en específico
+    println(scaryMovie.name)  // Output: Scary movie
+    
+    // Usar el método copy para crear una nueva instancia con una propiedad modificada
+    val newMovie = scaryMovie.copy(name = "Scary Movie 2")
+    println(newMovie)  // Output: Movie(name=Scary Movie 2, gender=Comedia, duration=88.27)
+}ntln(scaryMovie.name)
 ```
 
 **Declaraciones en el cuerpo**
