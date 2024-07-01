@@ -46,6 +46,7 @@ Imprime el resultado de cada operación.
 
 <details>
   <summary>Ver solución</summary>
+  
   ```kotlin
     val num1 = 20
     val num2 = 6
@@ -55,7 +56,7 @@ Imprime el resultado de cada operación.
     println("Multiplicación: ${num1 * num2}")
     println("División: ${num1 / num2}")
     println("Módulo: ${num1 % num2}")
-    ```
+```
 </details>
 
 ## Ejercicio 3: Incremento y Decremento
