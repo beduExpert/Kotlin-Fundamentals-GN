@@ -1,32 +1,141 @@
 
 ## Postwork
 
-### OBJETIVO
+## Ejercicios de Programación Funcional en Kotlin
+## 1. Expresiones Lambda
 
-- Complementar la información de programación funcional 
-- Mostrar un soporte para la implementación de este paradigma en tu proyecto final
+Crea una expresión lambda que tome dos números enteros y devuelva el mayor de ellos. Luego, usa esta lambda para encontrar el número más grande en una lista de enteros.
 
-#### REQUISITOS
+<details>
+<summary>Ver solución</summary>
+  
+```kotlin
+val obtenerMayor: (Int, Int) -> Int = { a, b -> if (a > b) a else b }
 
-1. Haber terminado todos los ejemplos y retos de esta [Sesión](../)
+fun main() {
+    val numeros = listOf(5, 2, 10, 8, 3, 1)
+    val maximo = numeros.reduce(obtenerMayor)
+    println("El número más grande es: $maximo")
+}
+```
+</details>
 
-#### DESARROLLO
+## 2. Funciones de Orden Superior
 
+Crea una función de orden superior llamada operacion que tome dos números enteros y una función como parámetros. Esta función debe aplicar la función recibida a los dos números. Luego, utiliza esta función de orden superior para realizar suma, resta y multiplicación.
 
-Muchas colecciones en Kotlin tienen funciones que implementan programación funcional. Daremos varios ejemplos:
+<details>
+<summary>Ver solución</summary>
+  
+```kotlin
+fun operacion(a: Int, b: Int, func: (Int, Int) -> Int): Int {
+    return func(a, b)
+}
 
+fun main() {
+    val suma = { x: Int, y: Int -> x + y }
+    val resta = { x: Int, y: Int -> x - y }
+    val multiplicacion = { x: Int, y: Int -> x * y }
 
-Algunas aproximaciones a programación funcional podrían ser dados los siguientes casos:
+    println("Suma: ${operacion(5, 3, suma)}")
+    println("Resta: ${operacion(5, 3, resta)}")
+    println("Multiplicación: ${operacion(5, 3, multiplicacion)}")
+}
+```
+</details>
 
-- Si tenemos una aplicación para reproducir música por streaming como spotify, podríamos necesitar la opción de reproducir aleatoriamente una lista de canciones, por lo que requeriremos una función pura que nos devuelva la lista de reproducción revuelta o en desorden.
+## 3. Inline Functions
 
-- Podríamos tener una aplicación que ofrezca sevicios, y que para algunos de ellos, requiera que ciertos datos de perfil de usuario estén completados, para esto, podríamos hacer la respectiva validación y dependiendo del resultado, se reproduzca el servicio ofrecido o se ejecute un callback de error. Suponiendo que se requiere tener la dirección de domicilio, el número telefónico, datos de mi vehículo y el RFC para los siguientes servicios: seguro de vehículos, pago de tenencia de vehículos y gasolina: si los datos que tenemos son válidos, el primer servicio podría mostrar en pantalla las diversas opciones de seguros mientras que el pago de tenencia me muestra la suma a pagar y la gasolina me pida la cantidad de litros para generar el pedido, cada una de estas opciones puede ser la función que se pase como argumento en caso de ser exitosa la validación, y enviar otra función adicional en caso de error.
+Crea una función inline que tome una lambda como parámetro y la ejecute dentro de un bloque try-catch. Luego, usa esta función para ejecutar una operación que podría lanzar una excepción.
 
-- También son un gran recurso las operaciones funcionales como filter, partition, map etc. Para generar filtros en caso de querer visualizar únicamente películas de cierto genero, o aplicar un descuento temporal a ciertos productos con la función map, etc.
+<details>
+<summary>Ver solución</summary>
+  
+```kotlin
+inline fun ejecutarSeguro(operacion: () -> Unit) {
+    try {
+        operacion()
+    } catch (e: Exception) {
+        println("Se produjo una excepción: ${e.message}")
+    }
+}
 
-#### Recursos adicionales
-Estos videos de preview son gratuitos, pero requieren inscripción, la parte gratuita explica únicamente conceptos, la versión de paga explica cómo se implementan en kotlin https://www.functionalhub.com/courses/take/introduction-functional-programming-kotlin/lessons/2222826-what-is-functional-programming. 
+fun main() {
+    ejecutarSeguro {
+        val resultado = 10 / 0
+        println(resultado)
+    }
+    
+    ejecutarSeguro {
+        println("Esta operación es segura")
+    }
+}
+```
+</details>
 
-No olvides echar un vistazo a este pequeñó tutorial de programación funcional oficial de Kotlin, que se enfoca en la migración desde Python. Aquí se explica un poco el concepto de funciones lambda o inline functions. https://kotlinlang.org/docs/tutorials/kotlin-for-py/functional-programming.html
+## 4. Filter y Map
 
+Dada una lista de palabras, utiliza filter para obtener solo las palabras que tengan más de 5 letras, y luego usa map para convertir estas palabras a mayúsculas.
 
+<details>
+<summary>Ver solución</summary>
+  
+```kotlin
+fun main() {
+    val palabras = listOf("gato", "perro", "elefante", "ratón", "hipopótamo")
+    
+    val resultado = palabras
+        .filter { it.length > 5 }
+        .map { it.uppercase() }
+    
+    println(resultado)
+}
+```
+</details>
+
+## 5. Partition y FlatMap
+
+Dada una lista de números, usa partition para separar los números pares e impares. Luego, usa flatMap para crear una nueva lista que contenga el cuadrado de los números pares y el cubo de los números impares.
+
+<details>
+<summary>Ver solución</summary>
+  
+```kotlin
+fun main() {
+    val numeros = listOf(1, 2, 3, 4, 5, 6, 7, 8, 9, 10)
+    
+    val (pares, impares) = numeros.partition { it % 2 == 0 }
+    
+    val resultado = listOf(pares, impares).flatMap { lista ->
+        lista.map { numero ->
+            if (numero % 2 == 0) numero * numero
+            else numero * numero * numero
+        }
+    }
+    
+    println(resultado)
+}
+```
+</details>
+
+## 6. Reduce y ForEach
+
+Crea una lista de números decimales que representen precios. Utiliza reduce para calcular el total de los precios. Luego, usa forEach para imprimir cada precio con un formato específico (por ejemplo, con dos decimales y el símbolo de moneda).
+
+<details>
+<summary>Ver solución</summary>
+  
+```kotlin
+fun main() {
+    val precios = listOf(19.99, 24.50, 9.95, 4.20, 99.99)
+    
+    val total = precios.reduce { acc, precio -> acc + precio }
+    
+    println("Total: ${"%.2f".format(total)}")
+    
+    precios.forEach { precio ->
+        println("${"$%.2f".format(precio)}")
+    }
+}
+```
+</details>
