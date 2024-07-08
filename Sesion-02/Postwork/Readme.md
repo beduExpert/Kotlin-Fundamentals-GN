@@ -44,6 +44,7 @@ fun main() {
 Desarrolla una función que valide una dirección de email utilizando una función local.
 <details>
 <summary>Solución:</summary>
+    
 ```kotlin
     fun validarEmail(email: String): Boolean {
     fun tieneArrobaYPunto(str: String): Boolean {
