@@ -1,59 +1,115 @@
 ## Postwork
 
-### OBJETIVO
-- Evitar crashes en nuestra aplicación
-- Manejar de forma estratégica los errores 
+## Ejercicios de Kotlin: Null Safety, Excepciones y Casting
 
-#### REQUISITOS
+## Ejercicio 1: Null Safety
 
-1. Terminar los ejercicios y retos de esta sesión.
-
-#### DESARROLLO
-
-La implementación de manejadores de errores es una tarea importante para el funcionamiento en el desarrollo de software. Existen muchos tipos de errores, pero a continuación enlistamos algunos casos y ejemplos para que los tomes en cuenta durante el desarrollo de tu proyecto. Ya hemos tocado algunas comunes como **ArrayIndexOutOfBoundsException**  cuando queremos acceder a una posición inexistente en un arreglo, **ArithmeticException** cuando se divide entre cero o **NumberFormatException** al querer convertir una String inválida a número.
-
-- FileNotFoundException: Un tipo de IOException que sucede al no encontrar el archivo a leer con la ruta proporcionada. Ejemplo:
-
+Dado el siguiente código:
 ```kotlin
-val fileStr = File("Archivo").inputStream().readBytes().toString(Charsets.UTF_8)
+var nombre: String? = "Juan"
 ```
 
-Como el archivo *Archivo* no existe, el sistema nos arrojará la siguiente excepción:
+¿Cuál es la forma correcta de obtener la longitud del nombre si no es nulo, o devolver 0 si es nulo?
+
+<details>
+<summary>Ver solución</summary>
+    
+```kotlin
+val longitud = nombre?.length ?: 0
+```
+Esta solución utiliza el operador de llamada segura ?. y el operador Elvis ?: para manejar el caso nulo de manera concisa.
+</details>
+
+## Ejercicio 2: Manejo de Excepciones
+
+Escribe una función que tome un String y lo convierta a un Int. Si la conversión falla, la función debe devolver null. Usa un bloque try-catch para manejar la excepción.
+
+<details>
+<summary>Ver solución</summary>
+    
+```kotlin
+fun convertirAEntero(str: String): Int? {
+    return try {
+        str.toInt()
+    } catch (e: NumberFormatException) {
+        null
+    }
+}
+```
+Esta función intenta convertir el String a Int y devuelve null si ocurre una NumberFormatException.
+</details>
+
+## Ejercicio 3: Smart Casting
+
+Dada la siguiente clase sellada:
 
 ```kotlin
-Exception in thread "main" java.io.FileNotFoundException: Archivo (No such file or directory)
+sealed class Resultado
+class Exito(val mensaje: String) : Resultado()
+class Error(val codigo: Int) : Resultado()
 ```
+Escribe una función que tome un Resultado y devuelva un String describiendo el resultado.
 
-- ParseException: Al momento de crear un objeto basado en una String con un formato específico, podríamos provocar una excepción si el formato de la string ingresada es inválida:
-
+<details>
+<summary>Ver solución</summary>
+    
 ```kotlin
-    val formatData = SimpleDateFormat("MM, dd, yyyy").parse("fecha-invalida")
+fun describirResultado(resultado: Resultado): String {
+    return when (resultado) {
+        is Exito -> "Éxito: ${resultado.mensaje}"
+        is Error -> "Error: Código ${resultado.codigo}"
+    }
+}
 ```
+Esta función utiliza smart casting para acceder a las propiedades específicas de cada subclase de Resultado.
 
-arroja el siguiente error:
+</details>
 
+## Ejercicio 4: Safe Cast
+
+Escribe una función que tome un Any y lo convierta de manera segura a un List<String>. Si la conversión no es posible, debe devolver una lista vacía.
+
+<details>
+<summary>Ver solución</summary>
+    
 ```kotlin
-Exception in thread "main" java.text.ParseException: Unparseable date: "fecha-invalida"
+fun convertirAListaDeStrings(objeto: Any): List<String> {
+    return (objeto as? List<*>)?.filterIsInstance<String>() ?: emptyList()
+}
 ```
+Esta función utiliza safe cast as? y filterIsInstance para realizar una conversión segura.
+</details>
 
-- IllegalArgumentException: Sucede cuando enviamos un argumento inválido a un método. Por ejemplo, si queremos pausar 1 segundo el hilo principal ejecutamos:
+## Ejercicio 5: Manejo de Null con Let
+Dada una variable nullable usuario: Usuario?, escribe un código que imprima el nombre del usuario si existe, o "Usuario desconocido" si es null. Usa la función let.
 
+<details>
+<summary>Ver solución</summary>
+    
 ```kotlin
-    println("hola")
-    Thread.sleep(1_000)
-    println("adios")
+usuario?.let { 
+    println(it.nombre) 
+} ?: println("Usuario desconocido")
 ```
-pero si utilizamos un número negativo en el Thread, nos arrojará esta excepción porque el tiempo no puede ser negativo (no querrás viajar al pasado, doc).
+Esta solución utiliza let para ejecutar un bloque de código solo si usuario no es null, y el operador Elvis para manejar el caso nulo.
+</details>
 
+## Ejercicio 6: Lanzamiento de Excepciones Personalizadas
+
+Crea una función dividir que tome dos enteros y devuelva su división. Si el segundo número es cero, debe lanzar una excepción personalizada llamada DivisionPorCeroException.
+
+<details>
+<summary>Ver solución</summary>
+    
 ```kotlin
-    Thread.sleep(-1_000)
+class DivisionPorCeroException : Exception("No se puede dividir por cero")
+
+fun dividir(a: Int, b: Int): Int {
+    if (b == 0) {
+        throw DivisionPorCeroException()
+    }
+    return a / b
+}
 ```
-
-el error sería el siguiente:
-
-```kotlin
-Exception in thread "main" java.lang.IllegalArgumentException: timeout value is negative
-```
-
-
-**Nota:** Algunos de las excepciones podrían estar relacionadas con el siguiente tema, por tanto, tomar en cuenta la injerencia en esta [Sesión 8](../../Sesion-08)
+Esta función verifica si el divisor es cero y lanza una excepción personalizada en ese caso.
+</details>
