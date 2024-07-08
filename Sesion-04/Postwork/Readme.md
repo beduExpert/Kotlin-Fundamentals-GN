@@ -1,75 +1,214 @@
 ## Postwork
 
-### OBJETIVO
+## 1. Herencia y Polimorfismo
 
-- Implementar abstracciones de clases a nuestro proyecto para organizar mejor 
-- Utilizar los Data Class para almacenar datos 
+Crea una clase base Animal con un método hacerSonido(). Luego, crea dos clases derivadas Perro y Gato que hereden de Animal y sobrescriban el método hacerSonido(). Finalmente, crea una función que reciba un Animal y llame a su método hacerSonido().
 
-#### REQUISITOS
-
-1. Saber definir los conceptos polimorfismo, herencia y encapsulamiento.
-2. Aplicar los conceptos anteriores.
-3. Terminar los ejercicios de la [Sesión](../Sesión-04)
-
-#### DESARROLLO
-
-La herencia es un tema fundamental en la Programación orientada a objetos, ya que permite mantener un orden y control sobre la relación de clases emparentadas. Por ejemplo, en el [Postwork de la sesión previa](../Sesión-03/Postwork) ejemplificábamos con una tienda de celulares en línea, el problema es que esta tienda se limita a este producto, y para poder vender productos en general, tendríamos que abarcar más objetos; pero como el concepto producto es muy abstracto, es muy general. Tenemos qué crearle una clase abstracta.
-
+<details>
+<summary>Ver solución</summary>
+    
 ```kotlin
-abstract class Product(
-    val name: String,
-    val description: String,
-    var sku:Int){
+open class Animal {
+    open fun hacerSonido() {
+        println("El animal hace un sonido")
+    }
+}
 
-    abstract fun editProduct()
+class Perro : Animal() {
+    override fun hacerSonido() {
+        println("El perro ladra")
+    }
+}
 
+class Gato : Animal() {
+    override fun hacerSonido() {
+        println("El gato maulla")
+    }
+}
+
+fun hacerSonar(animal: Animal) {
+    animal.hacerSonido()
+}
+
+fun main() {
+    val perro = Perro()
+    val gato = Gato()
+    
+    hacerSonar(perro) // Imprime: El perro ladra
+    hacerSonar(gato)  // Imprime: El gato maulla
 }
 ```
+</details>
 
-definimos una función abstracta por si queremos editar algún detalle de nuestro produccto.
+## 2. Clases Abstractas
 
-Mobile tiene que extender de él:
+Crea una clase abstracta Figura con un método abstracto calcularArea(). Luego, implementa dos clases concretas Circulo y Rectangulo que hereden de Figura e implementen el método calcularArea().
 
+<details>
+<summary>Ver solución</summary>
+    
 ```kotlin
-class Mobile(
-    private val brand: String,
-    private val model:String,
-    description: String,
-    private val color: String,
-    private val price: Float,
-    sku:Int): Product(model,description,sku)
-{
+abstract class Figura {
+    abstract fun calcularArea(): Double
+}
 
+class Circulo(private val radio: Double) : Figura() {
+    override fun calcularArea(): Double {
+        return Math.PI * radio * radio
+    }
+}
+
+class Rectangulo(private val base: Double, private val altura: Double) : Figura() {
+    override fun calcularArea(): Double {
+        return base * altura
+    }
+}
+
+fun main() {
+    val circulo = Circulo(5.0)
+    val rectangulo = Rectangulo(4.0, 6.0)
+    
+    println("Área del círculo: ${circulo.calcularArea()}")
+    println("Área del rectángulo: ${rectangulo.calcularArea()}")
+}
+```
+</details>
+
+## 3. Interfaces
+
+Crea una interfaz Volador con un método volar(). Luego, implementa esta interfaz en las clases Ave y Avion. Crea una función que reciba un Volador y llame a su método volar().
+
+<details>
+<summary>Ver solución</summary>
+    
+```kotlin
+interface Volador {
+    fun volar()
+}
+
+class Ave : Volador {
+    override fun volar() {
+        println("El ave vuela moviendo sus alas")
+    }
+}
+
+class Avion : Volador {
+    override fun volar() {
+        println("El avión vuela usando motores")
+    }
+}
+
+fun hacerVolar(volador: Volador) {
+    volador.volar()
+}
+
+fun main() {
+    val ave = Ave()
+    val avion = Avion()
+    
+    hacerVolar(ave)   // Imprime: El ave vuela moviendo sus alas
+    hacerVolar(avion) // Imprime: El avión vuela usando motores
+}
+```
+</details>
+
+## 4. Data Classes
+Crea una data class Libro con propiedades para título, autor y año de publicación. Luego, crea una lista de libros y utiliza las funciones generadas automáticamente para copiar un libro y comparar dos libros.
+
+<details>
+<summary>Ver solución</summary>
+    
+```kotlin
+data class Libro(val titulo: String, val autor: String, val anioPublicacion: Int)
+
+fun main() {
+    val libro1 = Libro("1984", "George Orwell", 1949)
+    val libro2 = Libro("Cien años de soledad", "Gabriel García Márquez", 1967)
+    val libro3 = libro1.copy(titulo = "Rebelión en la granja")
+    
+    val libros = listOf(libro1, libro2, libro3)
+    
+    println(libro1 == libro2) // false
+    println(libro1 == libro1.copy()) // true
+    
+    libros.forEach { println(it) }
+}
+```
+</details>
+
+## 5. Companion Object
+
+Crea una clase Contador con un companion object que mantenga un contador global de instancias creadas. Cada vez que se cree una nueva instancia de Contador, el contador global debe incrementarse.
+
+<details>
+<summary>Ver solución</summary>
+    
+```kotlin
+class Contador {
+    companion object {
+        private var contadorGlobal = 0
+        
+        fun obtenerContadorGlobal(): Int {
+            return contadorGlobal
+        }
+    }
+    
     init {
-        println("El celular es un $model de la marca $brand")
+        contadorGlobal++
     }
+}
 
-    override fun editProduct() {
-       println("product edited!") 
-    }
-
+fun main() {
+    println(Contador.obtenerContadorGlobal()) // 0
+    
+    val contador1 = Contador()
+    println(Contador.obtenerContadorGlobal()) // 1
+    
+    val contador2 = Contador()
+    val contador3 = Contador()
+    println(Contador.obtenerContadorGlobal()) // 3
 }
 ```
+</details>
 
-La idea es buscar cuál es el punto más general de los objetos que vas a definir mediante clases, para identificar si existe una abstracción sobre ellos y poder crear una clase raíz abstracta. Si existen características en algunos de los hijos o en otras classes no emparentadas, se utilizan las intefaces. En el caso anterior, podríamos utilizar una interfaz para definir las clases que apliquen a devolución (pues no serán todos), o si algunos de los productos aplican a un descuento.
+## 6. Herencia Múltiple con Interfaces
 
+Crea dos interfaces Nadador y Corredor con métodos nadar() y correr() respectivamente. Luego, crea una clase Triatleta que implemente ambas interfaces. Finalmente, crea una función que reciba un objeto y verifique si puede nadar, correr o ambos.
 
-Otro de los puntos, es utilizar con mayor frecuencia los data class, que por medio de serializador, convierten datos de una API remota en formato JSON a objetos.
-
-Podríamos usar un data class para un historial de transacciones en una aplicación como Uber. La transacción puede tener información de fecha, hora y localización tanto de salida como de llegada, nombre de conductor, precio final. Podríamos también anidar dos data class para la información de localización-tiempo.
-
+<details>
+<summary>Ver solución</summary>
+    
 ```kotlin
-data class viaje(
-  val initTimeLocation: TimeLocation,
-  val endTimesLocation: TimeLocation,
-  val price: Double,
-  val chauffeur: String,
-  val idViaje: Int
-)
+interface Nadador {
+    fun nadar()
+}
 
-data class TimeLocation
-    (val timestamp: Long,
-     val lat: Double,
-     val long: Double)
+interface Corredor {
+    fun correr()
+}
+
+class Triatleta : Nadador, Corredor {
+    override fun nadar() {
+        println("El triatleta está nadando")
+    }
+    
+    override fun correr() {
+        println("El triatleta está corriendo")
+    }
+}
+
+fun verificarHabilidades(obj: Any) {
+    if (obj is Nadador) {
+        obj.nadar()
+    }
+    if (obj is Corredor) {
+        obj.correr()
+    }
+}
+
+fun main() {
+    val triatleta = Triatleta()
+    verificarHabilidades(triatleta)
+}
 ```
-
+</details>
