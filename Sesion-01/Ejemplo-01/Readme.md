@@ -56,7 +56,35 @@ class MainActivity : AppCompatActivity() {
         val textView = findViewById<TextView>(R.id.textView)
         textView.text = "¡Hola Bedu!"
     }
-}```
+}
+```
 
 9. Abre el archivo activity_main.xml en la carpeta app > res > layout y reemplaza su contenido con:
+```kotlin
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Hello World!"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
+```
+
+10. Para ejecutar la aplicación, haz clic en el botón "Run" (triángulo verde) en la barra de herramientas superior o presiona Shift + F10.
+Selecciona un emulador o conecta un dispositivo Android para ver la aplicación en ejecución.
+
+11. La aplicación debería mostrar el mensaje "¡Hola Bedu!" en el centro de la pantalla.
 
