@@ -1,65 +1,62 @@
+# Android Studio: Primeros pasos y Hola Mundo
 
-## Primeros pasos - IntelliJ IDEA y hola mundo
+## OBJETIVO
+* Instalar y configurar Android Studio
+* Utilizar las herramientas básicas que nos proporciona el entorno de desarrollo
+* Crear nuestro primer programa con Kotlin en Android Studio
 
-### OBJETIVO
+## REQUISITOS
+1. Tener suficiente espacio en la memoria para instalar Android Studio
 
-- Instalar y configurar la IDE
-- Utilizar las herramientas básicas que nos proporciona el entorno de desarrollo
-- Crear nuestro primer programa con Kotlin!
+## DESARROLLO
 
-#### REQUISITOS
+### Instalación de Android Studio
 
-1. Tener suficiente espacio en la memoria para instalar nuestro entorno de trabajo
+1. Visita el sitio web oficial de Android Developers para descargar Android Studio: https://developer.android.com/studio
 
-#### DESARROLLO
+2. Descarga el archivo de instalación correspondiente a tu sistema operativo.
 
-##### Instalación de la IDE
+3. Ejecuta el archivo descargado e instala Android Studio siguiendo las instrucciones del asistente de instalación.
 
-Se pueden saltar este paso si lo hicieron previamente siguiendo las instrucciones del prework. Vamos a descargar nuestro entorno de trabajo visitando el sitio web oficial de JetBrains en la sección para descargar el archivo de instalación dependiendo el Sistema Operativo que utilicemos, [click aquí para visitar la página de descarga](https://www.jetbrains.com/idea/download)
+### Nuestro primer proyecto
 
-<img src="imgs/00.png" width="40%"/>
-Una vez descargado el archivo, ejecutar e instalarlo para poder crear nuestro primer proyecto.
+1. Abre Android Studio. Aparecerá la pantalla de bienvenida.
 
+2. Haz clic en "New Project" (Nuevo Proyecto).
 
-##### Nuestro primer proyecto
+3. En la ventana "New Project", selecciona "Empty Activity" (Actividad vacía) y haz clic en "Next".
 
-Vamos a crear un nuevo proyecto de kotlin, para esto vamos a ejecutar los siguientes pasos: 
+4. Configura tu proyecto:
+   - Name: HelloWorld
+   - Package name: com.example.helloworld
+   - Save location: Elige una ubicación para tu proyecto
+   - Language: Kotlin
+   - Minimum SDK: Selecciona la versión mínima de Android que deseas soportar
 
-1. Abrimos nuestra aplicación **IntelliJ IDEA**, lo cual provocará que se abra la siguiente ventana:
+5. Haz clic en "Finish" para crear el proyecto.
 
-<img src="imgs/01.png" width="40%"/>
+6. Android Studio generará automáticamente la estructura del proyecto y los archivos necesarios.
 
-2. Damos click en *crear nuevo proyecto*
+7. Abre el archivo MainActivity.kt en la carpeta app > java > com.example.helloworld.
 
-3. Aparecerán unas opciones para configurar el tipo de proyecto, seleccionaremos ***Kotlin*** -> ***JVM | IDEA*** 
-
-<img src="imgs/02.png" width="40%"/>
-
-4. Se abrirá la siguiente pantalla, escribir el nombre del proyecto (nosotros lo nombramos *HelloWorld*)
-
-<img src="imgs/03.png" width="40%"/>
-
-5. ¡Todo listo! estaremos ahora en la pantalla del proyecto, ahora hay que crear nuestro archivo kotlin en donde haremos nuestra primera línea de código. Expandiremoss la carpeta que tiene el nombre de nuestro proyecto, daremos click derecho en la carpeta **src** y daremos click en ***New*** -> ***Kotlin File/Class*** , tal como se muestra en la imagen.
-
-<img src="imgs/05.png" width="40%"/>
-
-6. Aparecerá el siguiente recuadro, aquí es donde nombraremos el nombre de nuestro archivo, al que en este caso nombraremos *HelloWorld*
-
-<img src="imgs/06.png" width="40%"/>
-
-7. creamos nuestra primera línea de código en kotlin, que imprimirá el famoso **Hola mundo** , modificado por cierto :wink: 
-el código es el siguiente: 
+8. Reemplaza el contenido del archivo con el siguiente código:
 
 ```kotlin
-fun main(){
-    print("¡Hola bedu!")
-}
-```
-Para correr el código, daremos al botón play verde que se genera del lado izquierdo o en la parte superior de nuestra IDE, la imagen también muestra en la parte inferior la pestaña de run habilitada, que mostrará el mensaje que mandamos a imprimir a la consola
+package com.example.helloworld
 
-<img src="imgs/11.png"/>
+import androidx.appcompat.app.AppCompatActivity
+import android.os.Bundle
+import android.widget.TextView
 
-la ejecución del código debe verse de la siguiente forma:
+class MainActivity : AppCompatActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContentView(R.layout.activity_main)
 
-<img src="imgs/runcode.gif"/>
+        val textView = findViewById<TextView>(R.id.textView)
+        textView.text = "¡Hola Bedu!"
+    }
+}```
+
+9. Abre el archivo activity_main.xml en la carpeta app > res > layout y reemplaza su contenido con:
 
