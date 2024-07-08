@@ -20,6 +20,7 @@ fun main() {
 </details>
 
 ## Ejercicio 2: Verificador de número primo
+
 Implementa una función que determine si un número es primo.
 <details>
 <summary>Solución:</summary>
@@ -41,6 +42,7 @@ fun main() {
 </details>
 
 ## Ejercicio 3: Validador de email con función local
+
 Desarrolla una función que valide una dirección de email utilizando una función local.
 <details>
 <summary>Solución:</summary>
@@ -57,13 +59,16 @@ Desarrolla una función que valide una dirección de email utilizando una funci�
 fun main() {
     println("¿Es válido user@example.com? ${validarEmail("user@example.com")}")
     println("¿Es válido invalid-email? ${validarEmail("invalid-email")}")
-}```
+}
+```
 </details>
 
 ## Ejercicio 4: Clasificador de edades usando when
+
 Crea una función que clasifique a una persona según su edad utilizando when.
 <details>
 <summary>Solución:</summary>
+    
 ```kotlin
 fun clasificarEdad(edad: Int) {
     when (edad) {
@@ -79,13 +84,16 @@ fun main() {
     clasificarEdad(15)
     clasificarEdad(35)
     clasificarEdad(70)
-}```
+}
+```
 </details>
 
 ## Ejercicio 5: Imprimir números pares en un rango
+
 Utiliza un ciclo for para imprimir los números pares en un rango dado.
 <details>
 <summary>Solución:</summary>
+    
 ```kotlin
 fun imprimirPares(inicio: Int, fin: Int) {
     for (i in inicio..fin step 2) {
@@ -97,13 +105,16 @@ fun imprimirPares(inicio: Int, fin: Int) {
 
 fun main() {
     imprimirPares(1, 10)
-}```
+}
+```
 </details>
 
 ## Ejercicio 6: Contar vocales en una lista de palabras
+
 Usa una lista y un ciclo para contar las vocales en una lista de palabras.
 <details>
 <summary>Solución:</summary>
+    
 ```kotlin
 fun contarVocales(palabras: List<String>): Int {
     val vocales = setOf('a', 'e', 'i', 'o', 'u')
@@ -119,13 +130,16 @@ fun contarVocales(palabras: List<String>): Int {
 fun main() {
     val listaPalabras = listOf("Hola", "Mundo", "Kotlin")
     println("Total de vocales: ${contarVocales(listaPalabras)}")
-}```
+}
+```
 </details>
 
 ## Ejercicio 7: Diccionario de sinónimos
+
 Crea un mapa de sinónimos y una función para obtener sinónimos de una palabra.
 <details>
 <summary>Solución:</summary>
+    
 ```kotlin
 val sinonimos = mapOf(
     "feliz" to listOf("contento", "alegre", "dichoso"),
@@ -140,5 +154,6 @@ fun obtenerSinonimos(palabra: String): List<String> {
 fun main() {
     println("Sinónimos de 'feliz': ${obtenerSinonimos("feliz")}")
     println("Sinónimos de 'cansado': ${obtenerSinonimos("cansado")}")
-}```
+}
+```
 </details>
