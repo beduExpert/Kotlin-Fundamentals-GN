@@ -17,6 +17,7 @@ fun main() {
     println("Volumen del cilindro: ${calcularVolumenCilindro(5.0, 10.0)}")
 }
 ```
+</details>
 
 ## Ejercicio 2: Verificador de número primo
 Implementa una función que determine si un número es primo.
@@ -37,6 +38,7 @@ fun main() {
     println("¿Es 24 primo? ${esPrimo(24)}")
 }
 ```
+</details>
 
 ## Ejercicio 3: Validador de email con función local
 Desarrolla una función que valide una dirección de email utilizando una función local.
@@ -55,6 +57,7 @@ fun main() {
     println("¿Es válido user@example.com? ${validarEmail("user@example.com")}")
     println("¿Es válido invalid-email? ${validarEmail("invalid-email")}")
 }```
+</details>
 
 ## Ejercicio 4: Clasificador de edades usando when
 Crea una función que clasifique a una persona según su edad utilizando when.
@@ -76,6 +79,7 @@ fun main() {
     clasificarEdad(35)
     clasificarEdad(70)
 }```
+</details>
 
 ## Ejercicio 5: Imprimir números pares en un rango
 Utiliza un ciclo for para imprimir los números pares en un rango dado.
@@ -93,6 +97,7 @@ fun imprimirPares(inicio: Int, fin: Int) {
 fun main() {
     imprimirPares(1, 10)
 }```
+</details>
 
 ## Ejercicio 6: Contar vocales en una lista de palabras
 Usa una lista y un ciclo para contar las vocales en una lista de palabras.
@@ -114,6 +119,7 @@ fun main() {
     val listaPalabras = listOf("Hola", "Mundo", "Kotlin")
     println("Total de vocales: ${contarVocales(listaPalabras)}")
 }```
+</details>
 
 ## Ejercicio 7: Diccionario de sinónimos
 Crea un mapa de sinónimos y una función para obtener sinónimos de una palabra.
@@ -134,3 +140,4 @@ fun main() {
     println("Sinónimos de 'feliz': ${obtenerSinonimos("feliz")}")
     println("Sinónimos de 'cansado': ${obtenerSinonimos("cansado")}")
 }```
+</details>
