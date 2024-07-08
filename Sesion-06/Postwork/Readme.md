@@ -1,80 +1,168 @@
 ## Postwork
 
-### OBJETIVO 
+## Ejercicios de Interoperabilidad Kotlin-Java
 
-- Utilizar recursos provistos en lenguaje Java
-- Aprovechar características como miembros estáticos 
+## 1. Uso de Clases Java en Kotlin
 
-#### REQUISITOS 
+Crea una clase Java llamada Persona con propiedades nombre y edad, y sus respectivos getters y setters. Luego, en Kotlin, crea una instancia de esta clase y modifica sus propiedades.
 
-1. Conocimiento básico de lenguaje Java
+<details>
+<summary>Ver solución</summary>
+    
+```java
+    // Persona.java
+public class Persona {
+    private String nombre;
+    private int edad;
 
+    public String getNombre() { return nombre; }
+    public void setNombre(String nombre) { this.nombre = nombre; }
+    public int getEdad() { return edad; }
+    public void setEdad(int edad) { this.edad = edad; }
+}
+kotlinCopy// main.kt
+fun main() {
+    val persona = Persona()
+    persona.nombre = "Juan"
+    persona.edad = 25
+    println("Nombre: ${persona.nombre}, Edad: ${persona.edad}")
+}
+```
+</details>
 
-#### DESARROLLO
+## 2. Uso de Clases Kotlin en Java
 
+Crea una clase Kotlin llamada Producto con propiedades nombre y precio. Luego, en Java, crea una instancia de esta clase y accede a sus propiedades.
 
-##### Utilizando J2K
+<details>
+<summary>Ver solución</summary>
+    
+```kotlin
+// Producto.kt
+class Producto(var nombre: String, var precio: Double)
+javaCopy// Main.java
+public class Main {
+    public static void main(String[] args) {
+        Producto producto = new Producto("Laptop", 999.99);
+        System.out.println("Nombre: " + producto.getNombre() + ", Precio: " + producto.getPrecio());
+    }
+}
+```
+</details>
 
-IntelliJ Idea viene equipado con una herramienta bastante útil e interesante : J2K (Java to Kotlin ) Que permite convertir un archivo Java a Kotlin. Vamos a aprender a utilizarlo.
+## 3. Miembros Estáticos de Java en Kotlin
 
-Supongamos que tenemos la siguiente clase *Utils* de un proyecto anterior en Java que nos va a servir para este nuevo proyecto, dentor de la clase, tenemos un método que nos va a servir para darle formato a las cantidades de dinero, tenemos algo así:
+Crea una clase Java con un método estático y una constante estática. Luego, accede a estos miembros desde Kotlin.
+
+<details>
+<summary>Ver solución</summary>
+    
+```java
+// Util.java
+public class Util {
+    public static final String VERSION = "1.0";
+    public static int sumar(int a, int b) {
+        return a + b;
+    }
+}
+```
+
+```kotlin
+// main.kt
+fun main() {
+    println("Versión: ${Util.VERSION}")
+    println("Suma: ${Util.sumar(5, 3)}")
+}
+```
+</details>
+
+## 4. Companion Object de Kotlin en Java
+
+Crea una clase Kotlin con un companion object que contenga un método y una propiedad. Luego, accede a estos miembros desde Java.
+
+<details>
+<summary>Ver solución</summary>
+    
+```kotlin
+// Calculadora.kt
+class Calculadora {
+    companion object {
+        const val PI = 3.14159
+        fun cuadrado(n: Int): Int = n * n
+    }
+}
+```
 
 ```java
-public class Utils {
-    public static String FormatPrice(Float price) {
-        NumberFormat currencyInstance = NumberFormat.getCurrencyInstance();
-        currencyInstance.setCurrency(Currency.getInstance("MXN"));
-        return currencyInstance.format(price);
+// Main.java
+public class Main {
+    public static void main(String[] args) {
+        System.out.println("PI: " + Calculadora.PI);
+        System.out.println("Cuadrado de 5: " + Calculadora.Companion.cuadrado(5));
+    }
+}
+```
+</details>
+
+## 5. Uso de Keywords de Kotlin como Identificadores en Java
+
+Crea una clase Java con métodos cuyos nombres sean palabras clave en Kotlin (por ejemplo, when, is, object). Luego, llama a estos métodos desde Kotlin.
+
+<details>
+<summary>Ver solución</summary>
+    
+```java
+// Keywords.java
+public class Keywords {
+    public static void when() {
+        System.out.println("Método when");
+    }
+    
+    public static void is() {
+        System.out.println("Método is");
+    }
+    
+    public static void object() {
+        System.out.println("Método object");
     }
 }
 ```
 
-Podemos utilizar este código tal cual está. En el [Reto final](../Reto-final), tenemos un proyecto solución al reto final que podemos emplear aquí para ejemplificar. Pondremos aquí el resultado como **Example** .
-
-Utilizamos nuestra clase Utils para darle formato a los precios en nuestro *main*:
-
 ```kotlin
-println("precio sin impuesto: ${ Utils.formatPrice(iPhone.price) }")
-println("precio con impuesto: ${Utils.formatPrice(iPhone.priceWithTax())}")
+// main.kt
+fun main() {
+    Keywords.`when`()
+    Keywords.`is`()
+    Keywords.`object`()
+}
+```
+</details>
+
+## 6. Propiedades Kotlin con Nombres Especiales en Java
+
+Crea una clase Kotlin con propiedades cuyos nombres requieran un tratamiento especial en Java (por ejemplo, is para un booleano). Luego, accede a estas propiedades desde Java.
+
+<details>
+<summary>Ver solución</summary>
+    
+```kotlin
+// EstadoObjeto.kt
+class EstadoObjeto {
+    var isActivo: Boolean = false
+    var hasValor: Int = 0
+}
 ```
 
-y funciona! ahora vamos a convertir Utils a Kotlin:
-
-<img src="images/0.png" width="60%">
-
-Convertir de Java a kotlin puede traer errores, por lo que nos advierten con este diálogo
-
-<img src="images/1.png" width="60%">
-
-Finalmente nuestro código quedó así:
-
-```kotlin
-object Utils {
-    fun formatPrice(price: Float?): String {
-        val currencyInstance = NumberFormat.getCurrencyInstance()
-        currencyInstance.currency = Currency.getInstance("MXN")
-        return currencyInstance.format(price)
+```java
+// Main.java
+public class Main {
+    public static void main(String[] args) {
+        EstadoObjeto estado = new EstadoObjeto();
+        estado.setActivo(true);
+        estado.setHasValor(10);
+        System.out.println("Activo: " + estado.isActivo());
+        System.out.println("Valor: " + estado.getHasValor());
     }
 }
-
 ```
-
-Como tal, no es totalmente una equivalencia, pero si ejecutamos de nuevo el *main*, funciona! En casos como clases simples, la conversión puede ser más fiel. Inténtalo convirtiendo la clase SmartPhone a Kotlin!!
-
-
-##### Paquetes Java
-
-gran parte de la interoperabilidad entre estos dos lenguajes se encuentra en el uso de paquetes de java en kotlin, puesto que proporciona muchas herramientas útiles que quizá kotlin aun no implementa como nativa. 
-
-algunos ejemplos son:
-
-* java.util
-* java.text
-* java.io
-
-##### Integración al proyecto
-
-Busca implementar nuevas funcionalidades a tus clases, como dar formato a fechas, dinero y tiempo; o quizá generar números aleatorios. Prueba buscando soluciones en internet a estas funcionalidades pero en lenguaje Java, y después integrándolo a tu proyecto. Esto es algo útil en el desarrollo de apps porque tanto en documentación de librerías como muchas de las soluciones a problemas (incluyendo stackoverflow) siguen presentándose en Java.
-
-
-
+</details>
