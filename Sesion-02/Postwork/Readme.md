@@ -1,183 +1,136 @@
+# Ejercicios de Kotlin: Funciones, Condicionales, Ciclos y Estructuras de Datos
 
-## Postwork
+## Ejercicio 1: Calculadora de volumen de cilindro
 
-### OBJETIVO
-
-- Sintetizar los temas de la [Sesión 2](../../Sesion-02) para aplicarlos al proyecto final
-
-#### REQUISITOS
-
-1. Saber utilizar las colecciones básicas de Kotlin
-2. Utilizar funciones para separar las tareas de un algoritmo en subtareas específicas
-3. Crear bucles que optimicen el código repetitivo
-4. Usar condicionales para la toma de decisiones
-
-#### DESARROLLO
-
-Esta sesión es un pilar básico no sólo de Kotlin, sino en general de la programación estructurada, pues los temas están presentes en todos los lenguajes modernos. 
-
-##### Funciones
-
-Como ya hemos visto anteriormente, utilizar funciones en nuestro algoritmo es una de las claves fundamentales para tener un código óptimo, escalable, legible y modular. En el proyecto, será una práctica constante el generar funciones que ejecuten tareas específicas, como *login*, *pagar*, *registro*, *getProfile*, *showCatalogue*.
+Crea una función que calcule el volumen de un cilindro dado su radio y altura.
+<details>
+<summary>Solución:</summary>
 
 ```kotlin
-//para hacer login si la aplicación lo requiere
-fun login(user: String, pass:String): Boolean{
-        var loggedIn = false
-        ...
-        return loggedIn
+import kotlin.math.PI
+
+fun calcularVolumenCilindro(radio: Double, altura: Double): Double {
+    return PI * radio * radio * altura
 }
 
-//si tenemos un reproductor de audio, podemos hacer una función para reproducir y otra para pausar 
-fun reproducirCancion(cancion: String){
-        println("Reproduciendo canción: $cancion")
-}
-
-fun pausar(){
-        println("Canción pausada")
-}
-
-fun pagar(saldo:Double,precio:Double){
-        saldo = -precio
-        println("Servicio pagado! te restan $saldo pesos")
-}
-
-...
-
-```
-
-Así, cuando tengamos que ejecutar una tarea, en vez de escribir todo el código de la tarea
-
-```kotlin
-//en el main llamamos a login
-fun main(){
-...
-       val loggedIn = false
-        ... //todo el código de validación
+fun main() {
+    println("Volumen del cilindro: ${calcularVolumenCilindro(5.0, 10.0)}")
 }
 ```
 
-Ponemos como tal la función
-
-```kotlin
-fun main(){
-...
-        val resultado = login(usuario,contraseña)
-}
-```
-
-
-##### Condicionales
-
-Tendremos qué tomar decisiones constantemente, por eso debemos implementar condicionales. En el ejemplo del login, debemos comparar si el usuario y la contraseña son correctos para un usuario.
-
-```kotlin
-fun login(user: String, pass:String): Boolean{
-        if(email=="kotlin@bedu.org" && password=="Kotlindesarrollo"){
-                println("Inicio de sesión exitoso")
-                return true
-        } else{
-                println("email o contraseña incorrecto")
-                return false
-        }
-}
-```
-
-Si vamos a comprar un artículo, debemos verificar que tengamos saldo suficiente
-
-```kotlin
-fun pagar(saldo:Double,precio:Double){
-        if(saldo>=precio){
-                saldo-=precio
-                println("Artículo comprado, saldo restante: $saldo pesos")
-        } else{
-                println("Necesitas saldo suficiente para poder comprar este producto")
-        }
-}
-```
-
-Al elegir país en una aplicación de productos, podemos utilizar *when* para verificar que el servicio exista en esa región.
-
-```kotlin
-fun elegirPais(country:String){
-    when(country){
-        "México" ->{
-            val idioma = "Español"
-            val divisa = "Peso"
-            actualizarPerfil(pais)
-            println("Bienvenido a Bedu shop")
-        }
-        "Francia" -> {
-            val idioma = "Francés"
-            val divisa = "Euro"
-            val credito = convertirAEuros(saldo) 
-            println("Soyez Bienvenu à Bedu shop")
-        }
-        "Estados Unidos" -> {
-            val idioma = "Inglés"
-            val divisa = "Dolar"
-            val credito = convertirADolares(saldo)
-            println("Welcome to Bedu shop")
-        }
-        else ->{
-            println("Lo sentimos, este servicio no está disponible en tu país")
-        }
+## Ejercicio 2: Verificador de número primo
+Implementa una función que determine si un número es primo.
+<details>
+<summary>Solución:</summary>
         
+```kotlin
+fun esPrimo(numero: Int): Boolean {
+    if (numero <= 1) return false
+    for (i in 2..Math.sqrt(numero.toDouble()).toInt()) {
+        if (numero % i == 0) return false
     }
+    return true
+}
+
+fun main() {
+    println("¿Es 17 primo? ${esPrimo(17)}")
+    println("¿Es 24 primo? ${esPrimo(24)}")
 }
 ```
 
-
-##### Colecciones
-
-Este tipo de datos almacenan varios datos en una sola variable, esto podría sernos útil para guardar simulaciones de datos como una lista de canciones disponibles, un catálogo de películas, un inventario de artículos en venta o una especie de base de datos de usuarios.
-
-Para una lista de usuarios, podríamos utilizar Map, puesto que requerimos asociar cuentas con contraseñas. Podríamos reemplazar el dato en duro de la función login por la validación con 
+## Ejercicio 3: Validador de email con función local
+Desarrolla una función que valide una dirección de email utilizando una función local.
+<details>
+<summary>Solución:</summary>
 ```kotlin
-val usuarios = mapOf(
-  "kotlin@bedu.org" to  "Kotlindesarrollo",
-    "daniel@cliente.com" to "Cliente123",
-    "Fernando@empresa.mx" to "F3R2472"
-);
-```
+    fun validarEmail(email: String): Boolean {
+    fun tieneArrobaYPunto(str: String): Boolean {
+        return str.contains("@") && str.contains(".")
+    }
 
-Si queremos almacenar una lista de películas, podemos hacerlas con un Set, si buscamos evitar que estas estén repetidas
+    return email.isNotEmpty() && tieneArrobaYPunto(email)
+}
+
+fun main() {
+    println("¿Es válido user@example.com? ${validarEmail("user@example.com")}")
+    println("¿Es válido invalid-email? ${validarEmail("invalid-email")}")
+}```
+
+## Ejercicio 4: Clasificador de edades usando when
+Crea una función que clasifique a una persona según su edad utilizando when.
+<details>
+<summary>Solución:</summary>
 ```kotlin
-val peliculas = setOf(
-    "Scary movie",
-    "Scary movie 2",
-    "Las trillizas de Belleville",
-    "Midori",
-    "Doce monos",
-    "Blade runner",
-    "Mulán"
+fun clasificarEdad(edad: Int) {
+    when (edad) {
+        in 0..12 -> println("Niño")
+        in 13..19 -> println("Adolescente")
+        in 20..64 -> println("Adulto")
+        else -> println("Adulto mayor")
+    }
+}
+
+fun main() {
+    clasificarEdad(8)
+    clasificarEdad(15)
+    clasificarEdad(35)
+    clasificarEdad(70)
+}```
+
+## Ejercicio 5: Imprimir números pares en un rango
+Utiliza un ciclo for para imprimir los números pares en un rango dado.
+<details>
+<summary>Solución:</summary>
+```kotlin
+fun imprimirPares(inicio: Int, fin: Int) {
+    for (i in inicio..fin step 2) {
+        if (i % 2 == 0) {
+            println(i)
+        }
+    }
+}
+
+fun main() {
+    imprimirPares(1, 10)
+}```
+
+## Ejercicio 6: Contar vocales en una lista de palabras
+Usa una lista y un ciclo para contar las vocales en una lista de palabras.
+<details>
+<summary>Solución:</summary>
+```kotlin
+fun contarVocales(palabras: List<String>): Int {
+    val vocales = setOf('a', 'e', 'i', 'o', 'u')
+    var totalVocales = 0
+    
+    for (palabra in palabras) {
+        totalVocales += palabra.lowercase().count { it in vocales }
+    }
+    
+    return totalVocales
+}
+
+fun main() {
+    val listaPalabras = listOf("Hola", "Mundo", "Kotlin")
+    println("Total de vocales: ${contarVocales(listaPalabras)}")
+}```
+
+## Ejercicio 7: Diccionario de sinónimos
+Crea un mapa de sinónimos y una función para obtener sinónimos de una palabra.
+<details>
+<summary>Solución:</summary>
+```kotlin
+val sinonimos = mapOf(
+    "feliz" to listOf("contento", "alegre", "dichoso"),
+    "triste" to listOf("melancólico", "abatido", "apenado"),
+    "enojado" to listOf("furioso", "irritado", "colérico")
 )
-```
 
-
-##### Bucles
-
-Constantemente nos encontraremos con tareas repetitivas, a veces sabremos cuántas veces vamos a repetir el proceso y otras, serán hasta que alguna condición se cumpla. En una aplicación de un cine, podemos consultar la cartelera así:
-
-```kotlin
-fun cartelera(){
-    for(pelicula in peliculas){
-        println(pelicula)
-    }
+fun obtenerSinonimos(palabra: String): List<String> {
+    return sinonimos[palabra.lowercase()] ?: listOf("No se encontraron sinónimos")
 }
-```
 
-o su equivalente
-
-```kotlin
-fun cartelera(){
-    peliculas.forEach{
-        println(it)
-    }
-}
-```
-
-
-
-
-
+fun main() {
+    println("Sinónimos de 'feliz': ${obtenerSinonimos("feliz")}")
+    println("Sinónimos de 'cansado': ${obtenerSinonimos("cansado")}")
+}```
