@@ -2,14 +2,6 @@
 
 # Ejercicios de Práctica en Kotlin
 
-## Postwork
-
-# Ejercicios de Práctica en Kotlin
-
-## Postwork
-
-# Ejercicios de Práctica en Kotlin
-
 ## Ejercicio 1: Declaración de Variables
 Declara variables para representar la información de un producto:
 - Nombre del producto (String)
